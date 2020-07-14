@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'from the root page' do
   it 'can pull characters by affiliation' do
     visit '/'
-    select "Fire Nation", from: "select-field"
-    click_button "Search for Members"
+    select "Fire Nation", from: "nation"
+    click_button "Search For Members"
 
     expect(current_page).to eq(search_path)
   end
