@@ -6,7 +6,22 @@ describe 'from the root page' do
     select "Fire Nation", from: "nation"
     click_button "Search For Members"
 
-    expect(current_page).to eq(search_path)
+    expect(current_path).to eq(search_path)
+
+    expect(page).to have_content("20")
+    within "character-5cf5679a915ecad153ab68da" do
+      expect(page).to have_content("Azula")
+      within '#allies' do
+        expect(page).to have_content("Ozai Zuko")
+      end
+      within '#enemies' do
+        expect(page).to have_content("Iroh Zuko Kuei Long Feng Mai Ty Lee Ursa")
+      end
+      within '#affiliations' do
+        expect(page).to have_content("Azula's team (formerly) Dai Li (formerly)
+        Fire Nation Fire Nation Royal Family Fire Warriors Royal Fire Academy for Girls (formerly)")
+      end
+    end
   end
 end
 
