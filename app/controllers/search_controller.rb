@@ -1,5 +1,7 @@
 class SearchController < ApplicationController
   def index
-    binding.pry
+    results = AirbenderResults.new
+    nation = results.get_nation(params[:nation])
+    @characters = results.affiliation_results(nation)
   end
 end
