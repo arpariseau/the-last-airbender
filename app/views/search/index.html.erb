@@ -1,1 +1,28 @@
 <h1><%= @characters.count %> results for the <%= @nation.join(" ") %></h1>
+<br/>
+<% @characters.each do |character| %>
+  <section id="character-<%=character.id%>">
+    <% unless character.photoUrl.nil? %>
+      <%= image_tag(character.photoUrl) %>
+    <% end %>
+    <h2><%= character.name %></h2>
+    <h3>Allies</h3>
+    <p class="allies">
+      <% unless character.allies.nil? %>
+        <% character.allies.each do |ally| %>
+          <%= ally + " " %>
+        <% end %>
+      <% end %>
+    </p>
+    <h3>Enemies</h3>
+    <p class="enemies">
+      <% unless character.enemies.nil? %>
+        <% character.enemies.each do |enemy| %>
+          <%= enemy + " " %>
+        <% end %>
+      <% end %>
+    </p>
+    <h3>Affiliations</h3>
+    <p class="affiliations"><%= character.affiliation %></p>
+  </section>
+<% end %>
